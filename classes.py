@@ -14,7 +14,8 @@ class Tester(Employee):
 
 class Developer(Employee):
     def increase_salary(self, percent, bonus=0):
-        self.salary += self.salary * (percent/100)
+        super().increase_salary(percent)
+        # Employee.increase_salary(self, percent)
         self.salary += bonus
 
 employee1 = Tester("Lauren", 44, 1000)
@@ -24,11 +25,4 @@ employee1.increase_salary(20)
 employee2.increase_salary(20,30)
 
 # print(employee1.salary)
-# print(employee2.salary)
-
-print(isinstance(employee1, Tester))
-print(isinstance(employee2, Developer))
-
-print(issubclass(Developer, Employee))
-print(issubclass(Employee, object))
-print(issubclass(Developer, object))
+print(employee2.salary)
