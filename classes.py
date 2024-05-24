@@ -23,5 +23,12 @@ employee2 = Developer("Ji-Soo", 38, 1000)
 employee1.increase_salary(20)
 employee2.increase_salary(20,30)
 
-print(employee1.salary)
-print(employee2.salary)
+# print(employee1.salary)
+# print(employee2.salary)
+
+print(isinstance(employee1, Tester))
+print(isinstance(employee2, Developer))
+
+print(issubclass(Developer, Employee))
+print(issubclass(Employee, object))
+print(issubclass(Developer, object))
