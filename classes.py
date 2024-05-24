@@ -4,6 +4,7 @@ class Employee:
         self.age = age
         self.position = position
         self.salary = salary
+        self._annual_salary = None
 
     def increase_salary(self, percent):
         self.salary += self.salary * (percent/100)
@@ -25,10 +26,18 @@ class Employee:
     def salary(self, salary):
         if salary < 1000:
             raise ValueError('Minimum wage is $1000')
-        self._salary = salary # no public      
+        self._annual_salary = None
+        self._salary = salary # no public
+
+    @property
+    def annual_salary(self):
+        if self._annual_salary is None:
+            self._annual_salary = self.salary * 12
+        return self._annual_salary      
 
 employee1 = Employee("Jin-Soo", 38, "developer", 1200)
 employee2 = Employee("Lauren", 44, "tester", 1000)
 
-employee1.salary = 2000.059
-print(employee1.salary)
+print("Before update salary",employee1.annual_salary)
+employee1.salary = 1000
+print("After update salary", employee1.annual_salary)
