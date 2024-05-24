@@ -9,13 +9,18 @@ class Employee:
     def increase_salary(self, percent):
         self.salary += self.salary * (percent/100)
 
-class Tester(Employee):
-    def run_tests(self):
-        print(f"Testing is started by {self.name}...")
-        print("Tests are done!")
+    def has_slots(self):
+        return hasattr(self, "__slots__")
 
-class Developer(Employee):
-    __slots__ = ("framework")
+class SlotsInspectorMixin:
+    __slots__ = ()
+    
+    def has_slots(self):
+        return hasattr(self, "__slots__")
+
+class Developer(SlotsInspectorMixin, Employee):
+    __slots__ = ("framework", )
+
     def __init__(self, name, age, salary, framework):
         super().__init__(name, age, salary)
         self.framework = framework
@@ -25,11 +30,11 @@ class Developer(Employee):
         # Employee.increase_salary(self, percent)
         self.salary += bonus
 
-employee1 = Tester("Lauren", 44, 1000)
+# employee1 = Tester("Lauren", 44, 1000)
 employee2 = Developer("Ji-Soo", 38, 1000, "Flask")
 
-employee1.increase_salary(20)
-employee2.increase_salary(20,30)
+# print(employee2.has_slots())
+# # Method Resolution Order
+# print(Developer.__mro__)
+print(employee2.__dict__)
 
-print(employee1.__slots__)
-print(employee2.__slots__)
