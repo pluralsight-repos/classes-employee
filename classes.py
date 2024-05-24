@@ -13,16 +13,22 @@ class Tester(Employee):
         print("Tests are done!")
 
 class Developer(Employee):
+    def __init__(self, name, age, salary, framework):
+        super().__init__(name, age, salary)
+        self.framework = framework
+
     def increase_salary(self, percent, bonus=0):
         super().increase_salary(percent)
         # Employee.increase_salary(self, percent)
         self.salary += bonus
 
 employee1 = Tester("Lauren", 44, 1000)
-employee2 = Developer("Ji-Soo", 38, 1000)
+employee2 = Developer("Ji-Soo", 38, 1000, "Flask")
 
 employee1.increase_salary(20)
 employee2.increase_salary(20,30)
 
 # print(employee1.salary)
+print(employee2.name)
+print(employee2.framework)
 print(employee2.salary)
