@@ -17,25 +17,18 @@ class Employee:
             f"{repr(self.name)},{repr(self.age)},{repr(self.position)},{repr(self.salary)})"
         )
     
-    def get_salary(self):
-        # return f"${self.salary}
-        # return round(self.salary, 2)
-        # logging.info("Someone accessed the salary attribute.")
+    @property
+    def salary(self):
         return self._salary
-        # return self.__salary
+        
     
     def set_salary(self, salary):
         if salary < 1000:
             raise ValueError('Minimum wage is $1000')
-        self._salary = salary # no public
-        # self.__salary = salary # name mangling
-        
-
+        self._salary = salary # no public      
 
 employee1 = Employee("Jin-Soo", 38, "developer", 1200)
 employee2 = Employee("Lauren", 44, "tester", 1000)
 
 employee1.set_salary(2000.059)
-# print(employee1.get_salary())
-# print(employee1._Employee__salary)
-print(employee1._salary)
+print(employee1.salary)
